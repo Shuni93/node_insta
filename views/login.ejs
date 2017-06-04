@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <title></title>
+  <link rel='stylesheet' href='/stylesheets/login.css' />
+</head>
+<body>
+  <div class="login_page">
+    <img class= "iphone" src="images/iphone.png">
+    <div class="index_form">
+      <form action="/login/signup" method="post" class="signup_form" id = "signup_form">
+        <input type="text" name="username" placeholder="USERNAME"/>
+        <input type="text" name="id" placeholder="ID"/>
+        <input type="password" name="password" placeholder="PASSWORD"/>
+        <button type="submit" form="signup_form" value="Submit">create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+      </form>
+      <form action="/login" method="post"  class="login_form" id = "login_form">
+        <input type="text" name="id" placeholder="ID"/>
+        <input type="password" name="password" placeholder="PASSWORD"/>
+        <button type="submit" form="login_form" value="Submit">login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+  <script>
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+  </script>
+</body>
+</html>

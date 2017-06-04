@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+  <link rel='stylesheet' href='/stylesheets/header.css' />
+  <link rel='stylesheet' href='/stylesheets/mypage.css' />
+</head>
+<body>
+  <div class="header">
+    <div class="header_content">
+      <img class= "logo" src= "/images/instagram.jpg">
+      <input id = "search_user"type="text" placeholder = "검색">
+      <div class="icons">
+        <img class= "icon" id = "ball" src= "/images/ball.png">
+        <img class= "icon" id = "heart" src= "/images/heart.png">
+        <img class= "icon" id = "profile" src= "/images/profile.png">
+      </div>
+    </div>
+  </div>
+  <div class="mypage">
+    <iframe id="ytplayer" class= "card-image modal" src="http://www.youtube.com/embed/<%=post[0].video_id%>" frameborder="0"/>
+    </iframe>
+    <div class = "myContent">
+      <div class="left_content"><img class= "profile_img" src= "/images/profile.png"></div>
+      <div class="right_content">
+        <div class = "profile_name"><%=post[0].user_id%></div>
+      </div>
+    </div>
+    <%for(var i =post.length-1; i >=0; i--) {%>
+      <img href="#ytplayer" rel= "modal:open" src="<%=post[i].video_thumbnail%>" alt="" class="post_img" />
+      <% }%>
+    </div>
+  </body>
+  <script>
+  $(document).ready(function(){
+    $(document).on("click", ".logo", function(e) {
+      window.location.href = '/';
+    })
+    $(document).on("click", "#profile", function(e) {
+      window.location.href = '/mypage';
+    })
+    $(document).on("click", "#ball", function(e) {
+      window.location.href = '/feed';
+    })
+    $(document).on("click", "#heart", function(e) {
+      window.location.href = '/search';
+    })
+  });
+  </script>
+  </html>

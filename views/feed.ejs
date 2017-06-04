@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/feed.css' />
+  <link rel='stylesheet' href='/stylesheets/header.css' />
+</head>
+<body>
+  <div class="header">
+    <div class="header_content">
+      <img class= "logo" src= "/images/instagram.jpg">
+      <input id = "search_user"type="text" placeholder = "검색">
+      <div class="icons">
+        <img class= "icon" id = "ball" src= "/images/ball.png">
+        <img class= "icon" id = "heart" src= "/images/heart.png">
+        <img class= "icon" id = "profile" src= "/images/profile.png">
+      </div>
+    </div>
+  </div>
+  <%for(var i =post.length-1; i >=0; i--) {%>
+    <div class="container">
+      <div class="card-wrapper">
+        <div class="card-header">
+          <div class="user-info">
+            <img src="/images/profile.png" alt="" class="user-img" />
+            <p class="user-name"><%=post[i].user_id%></p>
+          </div>
+        </div>
+        <hr />
+        <iframe id="ytplayer" class= "card-image" src="http://www.youtube.com/embed/<%=post[i].video_id%>" frameborder="0"/>
+        </iframe>
+        <hr/>
+        <div class="card-text">
+          <p><span style='font-weight: bold; margin-right: 10px;'><%=post[i].post_title%></span><%=post[i].text%></p>
+        </div>
+      </div>
+    </div>
+    <% }%>
+  </body>
+  <script>
+    $(document).ready(function(){
+      $(document).on("click", ".logo", function(e) {
+        window.location.href = '/';
+      })
+      $(document).on("click", "#profile", function(e) {
+        window.location.href = '/mypage';
+      })
+      $(document).on("click", "#ball", function(e) {
+        window.location.href = '/feed';
+      })
+      $(document).on("click", "#heart", function(e) {
+        window.location.href = '/search';
+      })
+    })
+  </script>
+  </html>

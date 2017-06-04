@@ -1,0 +1,35 @@
+body {
+  background: #FAFAFA;
+  margin: 0px;
+}
+.header {
+  height: 77px;
+  background-color: #FFF;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.0975);
+}
+#search_user{
+  width: 199px;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #999;
+  cursor: text;
+  padding: 4px;
+  z-index: 2;
+  border: 1px solid;
+}
+.logo {
+  width: 175px;
+  height: 35px;
+  margin-top: 21px;
+}
+.header_content{
+  padding: 0 40px;
+}
+.icons{
+  display: inline-block;
+}
+.icon{
+  width: 24px;
+  height: 24px;
+}

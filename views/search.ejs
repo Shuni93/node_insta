@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <title></title>
+  <link rel='stylesheet' href='/stylesheets/header.css' />
+  <link rel='stylesheet' href='/stylesheets/search.css' />
+</head>
+<body>
+  <div class="header">
+    <div class="header_content">
+      <img class= "logo" src= "/images/instagram.jpg">
+      <input id = "search_user"type="text" placeholder = "검색">
+      <div class="icons">
+        <img class= "icon" id = "ball" src= "/images/ball.png">
+        <img class= "icon" id = "heart" src= "/images/heart.png">
+        <img class= "icon" id = "profile" src= "/images/profile.png">
+      </div>
+    </div>
+  </div>
+  <div class="post_page">
+    <div class="index_form">
+      <form action="/search/post" method="post"  class="post_form" id = "post_form">
+        <input type="text" name="post_title" placeholder="Title"/>
+        <input type="text" name="text" placeholder="Description"/>
+        <input id="serachInput" class="searchInput" placeholder="SearchMusic" name = "search" />
+        <input id="video_thumbnail"style="display:none;"type="text" name ="video_thumbnail"/>
+        <table id=result></table>
+        <button type="submit" form="post_form" value="Submit">Post</button>
+      </form>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+    $('.searchInput').bind('input', function() {
+      //console.log($('.searchInput').val());
+      $.ajax({
+        url: '/search',
+        dataType: 'json',
+        type: 'POST',
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {'searchInput':$('.searchInput').val()},
+        success: function(data) { // data: 백엔드에서 requestBody 형식으로 보낸 데이터를 받는다.
+          //console.log(data);
+          $("#result").empty().hide();
+          $.each(data.items, function(i, object){
+            console.log(object);
+            $('#result').append("<tr class='searchTr' id ='searchList_"+i+"'></tr>")
+            $('#searchList_' + i).attr("data-id", object.id.videoId)
+            $('#searchList_'+i).append("<td class = 'item_img' id = 'item_img_"+i+"'></td>")
+            $('#item_img_'+i).append("<img class = 'img_cover' id = 'img_cover_"+i+"'src='"+object.snippet.thumbnails.default.url+"'/>")
+            $('#searchList_' + i).attr("data-thumbnails", object.snippet.thumbnails.high.url)
+            $('#searchList_'+i).append("<td class = 'item_name' id = 'searchName_"+i+"'>"+object.snippet.title+"</td>")
+            //console.log(object);
+            if ($('.searchInput').val()==''){
+              $("#result").empty().hide('slow');
+            } else {
+              $("#result").show('slow');
+            }
+          })
+          //for(var i =0; i<data.items.length; i++){}
+        },
+        error: function(e){
+        }
+      });
+    });
+    /*$(".searchTr").click(function(){
+    console.log($(this).data("id"));
+    //$(this).data("id")
+    console.log(this.data-id);
+    document.getElementById('serachInput').innerHTML = $(this).data("id");
+  })*/
+  $(document).on("click", ".searchTr", function(e) {
+    //console.log($(this).data("id"));
+    //document.getElementById('serachInput').val = $(this).data("id");
+    $('#serachInput').val($(this).data("id"));
+    $('#video_thumbnail').val($(this).data("thumbnails"));
+    $("#result").empty().hide('slow');
+    $("#serachInput").attr("readonly",true).attr("disabled",false);
+  });
+  $(document).on("click", ".logo", function(e) {
+    window.location.href = '/';
+  })
+  $(document).on("click", "#profile", function(e) {
+    window.location.href = '/mypage';
+  })
+  $(document).on("click", "#ball", function(e) {
+    window.location.href = '/feed';
+  })
+  $(document).on("click", "#heart", function(e) {
+    window.location.href = '/search';
+  })
+});
+</script>
+</body>
+</html>

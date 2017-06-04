@@ -1,0 +1,44 @@
+body {
+  background: #FAFAFA;
+  margin: 0px;
+}
+
+hr {
+  display: block;
+  width: 100%;
+  border-width: 0.1px;
+  border-color: #FAFAFA;
+  margin: 0px;
+}
+.card-wrapper {
+  margin: 0 auto;
+  margin-top: 60px;
+  background-color: #FFF;
+  border-radius: 1px;
+  border: 0.5px solid #C7D1DB;
+  width: 600px;
+
+}
+.card-header {
+  padding : 14px 20px;
+}
+.user-img {
+  border-radius: 50%;
+  width: 28px;
+  align-self: center;
+}
+.user-name {
+  margin: 5px 10px;
+  font-weight: bold;
+}
+ .user-info {
+  display: flex;
+}
+
+.card-image {
+  width: 600px;
+  height: 600px;
+}
+.card-text {
+  padding: 14px 20px;
+}

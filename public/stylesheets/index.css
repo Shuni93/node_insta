@@ -1,0 +1,28 @@
+nav {
+    position: fixed;
+    top: 0;
+    background: #fff;
+    width: 100%;
+    height: 77px;
+    border-bottom: 1px solid #dbdbdb;
+}
+#header{
+  text-align: center;
+  padding:  26px 40px;
+}
+#logo{
+  width: 300px;
+  border-radius: 10px;
+  display: inline-block;
+}
+#searchF{
+  border-radius: 3px;
+  width: 215px;
+  display: inline-block;
+}
+#icon{
+  width: 156px;
+  height: 24px;
+  display: inline-block;
+  background-color: orange;
+}
